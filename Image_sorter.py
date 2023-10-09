@@ -4,7 +4,7 @@ import os
 import numpy as np
 import shutil
 
-path = 'solo images'
+path = 'solo_images'
 images = []
 classNames = []
 mylist = os.listdir(path)
@@ -30,9 +30,9 @@ def find_encodings(pictures):
 
 
 encoded_face_train = find_encodings(images)
-for cl in os.listdir("group photos"):
+for cl in os.listdir("group_photos"):
 
-    img = cv2.imread(f'group photos/{cl}')
+    img = cv2.imread(f'group_photos/{cl}')
     imgS = cv2.resize(img, (0, 0), None, 0.25, 0.25)
     imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
     faces_in_frame = face_recognition.face_locations(imgS)
@@ -43,4 +43,4 @@ for cl in os.listdir("group photos"):
         matchIndex = np.argmin(faceDist)
         if matches[matchIndex]:
             name = classNames[matchIndex]
-            shutil.copy(f"./group photos/{cl}", f"./sorted_img/{name}/")
+            shutil.copy(f"./group_photos/{cl}", f"./sorted_img/{name}/")
